@@ -1,4 +1,4 @@
-````md
+
 # 🌌 Nexus Pulse
 ### Next-Gen Multi-Role Goal Alignment, Telemetry & Compliance Audit Platform
 
@@ -96,7 +96,6 @@ npm install
 npm run dev
 ````
 
----
 
 ## 🌐 Live Deployment
 
