@@ -16,35 +16,53 @@ export default function AdminDashboard() {
   const [adminData, setAdminData] = useState({ audit_logs: [] as any[], goals: [] as any[], stats: { total_locked: 0, alignment_score: 0 } });
 
   useEffect(() => {
-    fetchCoreAdminData();
-  }, [activeTab]);
-
-  const fetchCoreAdminData = async () => {
-    try {
-      const response = await fetch("/api/get_admin_data");
-      const d = await response.json();
-      if (d.success) setAdminData(d.data);
-
-      const analyticRes = await fetch("/api/get_analytics_data");
-      const aData = await analyticRes.json();
-      if (aData.success) setAnalytics(aData.metrics);
-
-      setEscalationLogs([
-        { id: "E-102", msg: "Escalation Level 2: Manager reporting lines alerted for review stagnation on Arjun Verma.", lvl: 2 },
-        { id: "E-103", msg: "CRITICAL Escalation Level 3: Final HR directive sent for Priya Sharma due to overdue check-in.", lvl: 3 }
-      ]);
-    } catch (error) {
-      console.error("Failed to connect control links.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    setAdminData({
+      audit_logs: [
+        {
+          id: 1,
+          changed_by: "ADMIN_CORE",
+          change_description: "Unlocked KPI structure for Employee EMP_1001",
+          changed_at: "2026-05-17 18:30"
+        },
+        {
+          id: 2,
+          changed_by: "MANAGER_L1",
+          change_description: "Approved Quarterly KPI alignment",
+          changed_at: "2026-05-17 17:15"
+        }
+      ],
+  
+      goals: [
+        {
+          id: "G_1001",
+          title: "Increase Customer Retention",
+          user_id: "EMP_1001",
+          thrust_area: "Customer",
+          is_locked: true
+        },
+        {
+          id: "G_1002",
+          title: "Reduce Ticket Resolution Time",
+          user_id: "EMP_1002",
+          thrust_area: "Process",
+          is_locked: true
+        }
+      ],
+  
+      stats: {
+        total_locked: 14,
+        alignment_score: 92
+      }
+    });
+  
+    setIsLoading(false);
+  }, []);
 
   const triggerEscalationSweep = async () => {
     const res = await fetch("/api/run_escalations", { method: "POST" });
     if(res.ok) {
       alert("SYSTEM ESCALATION CHECK INITIATED. ALL OVERDUE HIERARCHY NODES MOVED TO TIMELINE LOGS.");
-      fetchCoreAdminData();
+      window.location.reload();
     }
   };
 
@@ -84,7 +102,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-end mb-12 border-b border-gray-500/20 pb-6">
             <div>
               <p className="mono-text text-xs tracking-[0.2em] uppercase mb-2" style={{ color: darkMode ? 'rgba(148,88,255,0.6)' : '#6d28d9' }}>System / Admin_HR</p>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-inherit to-purple-500">Nexus Tracker Control</h1>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-inherit to-purple-500">Nexus Pulse Control</h1>
             </div>
             <div className="flex items-center gap-4">
               <button className="mono-text text-[11px] font-bold px-3 py-1.5 rounded border border-gray-500/30 hover:bg-gray-500/10 transition-all" onClick={toggleDarkMode}>

@@ -23,18 +23,42 @@ export default function ManagerDashboard() {
   }, [activeTab, selectedQuarter]);
 
   const fetchPending = async () => {
-    setIsLoading(true);
     try {
-      const response = await fetch("/api/get_pending_goals");
-      const data = await response.json();
-      if (data.success) {
-        setPendingGoals(data.data);
-        const edits: any = {};
-        data.data.forEach((g: any) => {
-          edits[g.id] = { target: g.target, weightage: g.weightage };
-        });
-        setInlineEdits(edits);
-      }
+      const mockPendingGoals = [
+        {
+          id: "goal-001",
+          title: "Increase Customer Retention",
+          thrust_area: "Customer",
+          target: "90",
+          weightage: 30,
+          user_id: "EMP_1001",
+          is_locked: false,
+          uom_type: "Min_Percent"
+        },
+        {
+          id: "goal-002",
+          title: "Reduce Ticket Resolution Time",
+          thrust_area: "Process",
+          target: "4",
+          weightage: 25,
+          user_id: "EMP_1002",
+          is_locked: false,
+          uom_type: "Max_Numeric"
+        },
+        {
+          id: "goal-003",
+          title: "Upskill Team on AI Tools",
+          thrust_area: "Learning",
+          target: "100",
+          weightage: 20,
+          user_id: "EMP_1003",
+          is_locked: false,
+          uom_type: "Min_Percent"
+        }
+      ];
+  
+      setPendingGoals(mockPendingGoals);
+  
     } catch (e) {
       console.error("Link failed");
     } finally {
@@ -148,7 +172,7 @@ export default function ManagerDashboard() {
           <div className="flex justify-between items-end mb-12 border-b border-gray-500/20 pb-6">
             <div>
               <p className="mono-text text-xs tracking-[0.2em] uppercase mb-2" style={{ color: darkMode ? 'rgba(255,160,0,0.6)' : '#b45309' }}>Command / Manager L1</p>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-inherit to-amber-500">Nexus Tracker Oversight</h1>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-inherit to-amber-500">Nexus Pulse Oversight</h1>
             </div>
             <div className="flex items-center gap-4">
               <button className="mono-text text-[11px] font-bold px-3 py-1.5 rounded border border-gray-500/30 hover:bg-gray-500/10 transition-all" onClick={toggleDarkMode}>

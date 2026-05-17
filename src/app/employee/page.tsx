@@ -22,37 +22,100 @@ export default function EmployeeDashboard() {
 
   const fetchGoalsAndDrafts = async () => {
     try {
-      const response = await fetch("/api/get_locked_goals");
-      const data = await response.json();
-      if (data.success) {
-        setLockedGoals(data.data.filter((g: any) => g.is_locked === true));
-        
-        const sharedDrafts = data.data.filter((g: any) => g.is_locked === false && g.parent_goal_id);
-        if (sharedDrafts.length > 0 && goals.length === 1 && goals[0].title === "") {
-          setGoals(sharedDrafts.map((g: any) => ({
-            id: g.id,
-            parent_goal_id: g.parent_goal_id,
-            title: g.title,
-            thrustArea: g.thrust_area,
-            uom: g.uom_type,
-            target: g.target,
-            weightage: g.weightage
-          })));
+      const mockGoals = [
+        {
+          id: "goal-001",
+          title: "Increase Customer Retention",
+          thrust_area: "Customer",
+          uom_type: "Min_Percent",
+          target: "90",
+          weightage: 30,
+          is_locked: true,
+          check_ins: [
+            {
+              quarter: "Q1",
+              actual_achievement: "82",
+              progress_score: 91,
+              status: "On Track"
+            }
+          ]
+        },
+        {
+          id: "goal-002",
+          title: "Reduce Ticket Resolution Time",
+          thrust_area: "Process",
+          uom_type: "Max_Numeric",
+          target: "4",
+          weightage: 25,
+          is_locked: true,
+          check_ins: [
+            {
+              quarter: "Q1",
+              actual_achievement: "5",
+              progress_score: 80,
+              status: "On Track"
+            }
+          ]
+        },
+        {
+          id: "goal-003",
+          title: "Upskill Team on AI Tools",
+          thrust_area: "Learning",
+          uom_type: "Min_Percent",
+          target: "100",
+          weightage: 20,
+          is_locked: true,
+          check_ins: [
+            {
+              quarter: "Q1",
+              actual_achievement: "65",
+              progress_score: 65,
+              status: "On Track"
+            }
+          ]
+        },
+        {
+          id: "goal-004",
+          title: "Optimize Revenue Pipeline",
+          thrust_area: "Financial",
+          uom_type: "Min_Numeric",
+          target: "500000",
+          weightage: 25,
+          is_locked: true,
+          check_ins: [
+            {
+              quarter: "Q1",
+              actual_achievement: "410000",
+              progress_score: 82,
+              status: "On Track"
+            }
+          ]
         }
-
-        const initialActuals: any = {};
-        data.data.forEach((g: any) => {
-          const match = g.check_ins?.find((c: any) => c.quarter === selectedQuarter);
-          initialActuals[g.id] = {
-            value: match ? match.actual_achievement : "",
-            status: match ? match.status : "Not Started"
-          };
-          if (match) {
-            setCalculatedScores(prev => ({ ...prev, [g.id]: match.progress_score }));
-          }
-        });
-        setActuals(initialActuals);
-      }
+      ];
+  
+      setLockedGoals(mockGoals);
+  
+      const initialActuals: any = {};
+      const initialScores: any = {};
+  
+      mockGoals.forEach((g: any) => {
+        const match = g.check_ins?.find(
+          (c: any) => c.quarter === selectedQuarter
+        );
+  
+        initialActuals[g.id] = {
+          value: match ? match.actual_achievement : "",
+          status: match ? match.status : "Not Started"
+        };
+  
+        initialScores[g.id] = match
+          ? match.progress_score
+          : 0;
+      });
+  
+      setActuals(initialActuals);
+      setCalculatedScores(initialScores);
+  
     } catch (e) {
       console.error("Telemetry link lost");
     }
@@ -90,7 +153,7 @@ export default function EmployeeDashboard() {
       });
       const data = await response.json();
       if (response.ok) {
-        setStatus({ state: "success", message: "TRANSMISSION SUCCESSFUL. GOALS WRITTEN TO NEXUS TRACKER LEDGER." });
+        setStatus({ state: "success", message: "TRANSMISSION SUCCESSFUL. GOALS WRITTEN TO Nexus Pulse LEDGER." });
         setTimeout(() => setStatus({ state: "idle", message: "" }), 5000);
       } else {
         setStatus({ state: "error", message: `SYSTEM REJECT: ${data.error}` });
@@ -169,7 +232,7 @@ export default function EmployeeDashboard() {
           <div className="flex justify-between items-end mb-12 border-b border-gray-500/20 pb-6">
             <div>
               <p className="mono-text text-xs tracking-[0.2em] uppercase mb-2" style={{ color: darkMode ? 'rgba(0,212,255,0.6)' : '#0284c7' }}>Workspace / Employee</p>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-inherit to-cyan-500">Nexus Tracker Workspace</h1>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-inherit to-cyan-500">Nexus Pulse Workspace</h1>
             </div>
             <div className="flex items-center gap-4">
               <button className="mono-text text-[11px] font-bold px-3 py-1.5 rounded border border-gray-500/30 hover:bg-gray-500/10 transition-all" onClick={toggleDarkMode}>

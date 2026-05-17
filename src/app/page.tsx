@@ -251,7 +251,7 @@ export default function Home() {
             </div>
 
             <p className="aq-eyebrow">Enterprise Alignment</p>
-            <h1 className="aq-h1">Nexus<br/>Tracker</h1>
+            <h1 className="aq-h1">Nexus<br/>Pulse</h1>
             <p className="aq-tagline">Map operations. Audit progress. Close the performance feedback loop natively across your structural nodes.</p>
 
             <div className="aq-stats">

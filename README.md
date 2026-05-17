@@ -1,4 +1,4 @@
-# 🌌 Nexus Tracker
+# 🌌 Nexus Pulse
 ### Next-Gen Multi-Role Goal Alignment, Telemetry & Compliance Audit Platform
 
 > **AtomQuest Hackathon 1.0** · Team ManSathi · Built by [Gurdarshan Singh](https://github.com/GurdarshanSingh78)
@@ -14,13 +14,13 @@
 
 ## 💡 Overview
 
-Traditional corporate performance systems suffer from visibility gaps, misaligned KPIs, and slow appraisal cycles. **Nexus Tracker** eliminates all of that — a serverless, cost-optimized platform unifying goal setting, progress tracking, and compliance management across Employees, Managers, and Admins in one seamless loop.
+Traditional corporate performance systems suffer from visibility gaps, misaligned KPIs, and slow appraisal cycles. **Nexus Pulse** eliminates all of that — a serverless, cost-optimized platform unifying goal setting, progress tracking, and compliance management across Employees, Managers, and Admins in one seamless loop.
 
 ---
 
 ## 🧱 Architecture
 
-![Nexus Tracker Architecture](./arti.png)
+![Nexus Pulse Architecture](./arti.png)
 
 ---
 
@@ -73,8 +73,8 @@ Access all roles directly from the root Identity Gate — no login required.
 ## 🚀 Local Setup
 
 ```bash
-git clone https://github.com/GurdarshanSingh78/nexus-tracker.git
-cd nexus-tracker
+git clone https://github.com/GurdarshanSingh78/Nexus-pulse.git
+cd Nexus-pulse
 npm install
 
 # Configure environment

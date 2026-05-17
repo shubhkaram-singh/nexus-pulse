@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nexus Tracker",
+  title: "Nexus Pulse",
   description: "Enterprise Goal Tracking & Management Portal",
 };
 
