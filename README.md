@@ -1,20 +1,25 @@
+````md
 # 🌌 Nexus Pulse
 ### Next-Gen Multi-Role Goal Alignment, Telemetry & Compliance Audit Platform
 
-> **AtomQuest Hackathon 1.0** · Team ManSathi · Built by [Gurdarshan Singh](https://github.com/GurdarshanSingh78)
+> **AtomQuest Hackathon 1.0** · Built by [Shubhkaram Singh](https://github.com/shubhkaram-singh)
 
 [![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com)
 [![Python](https://img.shields.io/badge/API-Python%20Serverless-3776AB?style=flat-square&logo=python)](https://python.org)
 [![Vercel](https://img.shields.io/badge/Hosted-Vercel%20Edge-black?style=flat-square&logo=vercel)](https://vercel.com)
 
-🔗 **Live Demo:** [atomquest-portal-smoky.vercel.app](https://atomquest-portal-smoky.vercel.app/)
+🔗 **Live Demo:** https://nexus-pulse-plum.vercel.app/
+
+🔗 **GitHub Profile:** https://github.com/shubhkaram-singh
 
 ---
 
 ## 💡 Overview
 
-Traditional corporate performance systems suffer from visibility gaps, misaligned KPIs, and slow appraisal cycles. **Nexus Pulse** eliminates all of that — a serverless, cost-optimized platform unifying goal setting, progress tracking, and compliance management across Employees, Managers, and Admins in one seamless loop.
+Traditional corporate performance systems often suffer from visibility gaps, KPI misalignment, and delayed appraisal workflows. **Nexus Pulse** solves these challenges through a modern multi-role performance management platform that unifies goal creation, progress tracking, approval workflows, and compliance monitoring across Employees, Managers, and Admins.
+
+The platform is designed with a futuristic cyber-dashboard interface and serverless architecture for scalability, speed, and low operational cost.
 
 ---
 
@@ -29,70 +34,119 @@ Traditional corporate performance systems suffer from visibility gaps, misaligne
 | Layer | Technology |
 |---|---|
 | Frontend | Next.js (App Router) + Tailwind CSS |
-| Backend API | Python 3 Serverless Micro-Gateway (`BaseHTTPRequestHandler`) |
-| Database | Supabase · Cloud PostgreSQL via `postgrest-py` |
-| Routing | Vercel Edge Platform + `vercel.json` Rewrite Engine |
+| Backend API | Python 3 Serverless API |
+| Database | Supabase PostgreSQL |
+| Hosting | Vercel Edge Platform |
+| Styling | Tailwind CSS |
+| Routing | Vercel Rewrite Engine |
 
 ---
 
 ## 👥 Demo Roles
 
-Access all roles directly from the root Identity Gate — no login required.
+Access all modules directly from the root Identity Gateway — no authentication required for evaluation.
 
-| Role | UUID | Capabilities |
-|---|---|---|
-| Employee | `00000000-...-0001` | Build goals, submit quarterly check-ins |
-| L1 Manager | `b26ab711-...-0000` | Inline edits, approvals, system lock |
-| HR Admin | `c37bc832-...-0000` | Audit logs, analytics, CSV export |
+| Role | Capabilities |
+|---|---|
+| Employee | Create goals, submit quarterly progress updates |
+| Manager | Review submissions, edit targets, authorize KPI locks |
+| Admin | Audit logs, analytics monitoring, escalation handling |
 
 ---
 
-## ✨ Features & Evaluation Checkpoints
+## ✨ Core Features
 
-### 🎯 Phase 1 — Goal Architecture
-- **Smart Guardrails** — Backend blocks any sheet where total weightage ≠ `100%` or any goal drops below `10%`. Max `8` goals per employee.
-- **Manager Override Console** — L1 Managers edit targets/weightage inline before authorizing.
-- **Post-Auth Locks** — Once approved, employee parameters become immutable mid-cycle.
-- **Shared KPI Broadcast** — Executives push goals org-wide; child clones lock Title & Target, only weightage is editable.
+### 🎯 Goal Management System
+- Multi-goal KPI creation with weighted distribution
+- Validation engine ensuring total KPI weightage equals `100%`
+- Shared organizational KPI broadcasting
+- Inline manager authorization workflow
+- Goal locking after approval
 
-### 📊 Phase 2 — Telemetry & Scoring Engine
-- **Quarterly Isolation** — Strict Q1–Q4 reporting windows.
-- **Dynamic Score Formulas by UoM type:**
-  - *Higher is Better →* `(Actual ÷ Target) × 100`
-  - *Lower is Better →* `(Target ÷ Actual) × 100`
-  - *Timeline / Zero-Incident →* Binary boundary evaluation
+### 📊 Performance Tracking
+- Quarterly check-in system (Q1–Q4)
+- Dynamic KPI scoring formulas
+- UoM-based evaluation logic
+- Real-time telemetry dashboards
+- Performance analytics overview
 
-### 🔐 Bonus Modules
-- **Immutable Audit Trail** — Every post-lock change logs actor identity, delta, and timestamp to `audit_logs`.
-- **Escalation Engine** — Stalled approvals auto-escalate: Employee → Manager → HR via rule-based tier sweeps.
-- **Analytics Dashboard** — Thrust area distributions, task completion rates, and active alert monitoring.
-- **CSV Exporter** — One-click streaming of full performance data from Postgres to `.csv`.
+### 🔐 Compliance & Governance
+- Immutable audit logging
+- Escalation workflow engine
+- Activity monitoring dashboard
+- CSV performance data export
+- Hierarchical approval pipeline
 
 ---
 
 ## 🚀 Local Setup
 
 ```bash
-git clone https://github.com/GurdarshanSingh78/Nexus-pulse.git
-cd Nexus-pulse
+git clone https://github.com/shubhkaram-singh/nexus-pulse.git
+
+cd nexus-pulse
+
 npm install
 
-# Configure environment
-cp .env.example .env.local
-# Set SUPABASE_URL and SUPABASE_KEY in .env.local
+# Configure environment variables
+# Create .env.local and add:
+# SUPABASE_URL=
+# SUPABASE_KEY=
 
 npm run dev
-```
+````
+
+---
+
+## 🌐 Live Deployment
+
+Production Deployment:
+
+[https://nexus-pulse-plum.vercel.app/](https://nexus-pulse-plum.vercel.app/)
 
 ---
 
 ## 🧭 Evaluation Walkthrough
 
-1. **Employee Node** → Create goals totaling `100%` weightage → Submit
-2. **Manager Node** → Edit a target inline → Authorize & Lock
-3. **Employee Node** → Open Phase 2 → Enter actuals → Verify score computation
-4. **Admin Panel** → Check Audit Log → Download CSV report
+### Employee Module
+
+* Create KPI goals
+* Assign weightage
+* Submit quarterly updates
+
+### Manager Module
+
+* Review employee KPIs
+* Edit targets inline
+* Approve and lock submissions
+
+### Admin Module
+
+* Monitor analytics dashboard
+* View audit logs
+* Export reports
+* Handle escalations
 
 ---
 
-*Built for AtomQuest Hackathon 1.0 · © 2024 Gurdarshan Singh*
+## 📁 Repository
+
+GitHub Repository:
+
+[https://github.com/shubhkaram-singh/nexus-pulse](https://github.com/shubhkaram-singh/nexus-pulse)
+
+---
+
+## 👨‍💻 Developer
+
+**Shubhkaram Singh**
+
+GitHub:
+[https://github.com/shubhkaram-singh](https://github.com/shubhkaram-singh)
+
+---
+
+*Built for AtomQuest Hackathon 1.0*
+
+```
+```
